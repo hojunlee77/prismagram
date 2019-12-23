@@ -9,8 +9,8 @@ import sggTransport from "nodemailer-sendgrid-transport";
 export const sendMail = email => {
   const options = {
     auth: {
-      api_user: process.env.SNEDGRID_USERNAME,
-      api_key: process.env.SNEDGRID_PASSWORD
+      api_user: process.env.SENDGRID_USERNAME,
+      api_key: process.env.SENDGRID_PASSWORD
     }
   };
   const client = nodemailer.createTransport(sggTransport(options));
@@ -27,7 +27,7 @@ export const sendSecretMail = (adress, secret) => {
     from: "hojunlee@prismagram.com",
     to: adress,
     subject: "Login Secret for Prismagram",
-    html: `Hello! Your login secret it ${secret}.<br/>Copy paste on the app/website to login`
+    html: `Hello! Your login secret is <strong>${secret}</strong>.<br/>Copy paste on the app/website to login`
   };
   return sendMail(email);
 };
